@@ -1,9 +1,39 @@
+from random import choice 
+from colorama import Fore #cores
+from colorama import init
+init(autoreset=True)
+
 def filtra(listaPalavras,numLetras):
     nlist = []
     for palavra in listaPalavras:
         if len(palavra) == numLetras and palavra.lower() not in nlist:
             nlist.append(palavra.lower())
     return nlist
+
+
+def inicializa(listaPal):
+    return {'n' : len(listaPal[0]),
+    'sorteada' : choice(listaPal),
+    'especuladas' : [],
+    'tentativas' : len(listaPal[0]) +1
+    }
+
+
+def inidica_posicao(sorteada,especulada):
+    if len(sorteada) != len(especulada):
+        return []
+    sorteada.lower()
+    especulada.lower()
+    lis = []
+    for i in range(len(especulada)):
+        if especulada[i] == sorteada[i]:
+            lis.append(0)
+        elif especulada[i] not in sorteada:
+            lis.append(2)
+        else:
+            lis.append(1)
+    return lis
+
 
 PALAVRAS = [
     "a", "Aarao", "aba", "abacate", "abacateiro", "abacateiros", "abacates", "abacaxi", "abacaxis", "abaciais", "abacial", "abaco", "abacos", "abade", "abades", "abadessa", "abadessas", "abadia", "abadias", "abafa", 
@@ -12280,3 +12310,7 @@ PALAVRAS = [
 
 
 sanitized_words = filtra(PALAVRAS,5)
+
+info_dic = inicializa(sanitized_words)
+
+
