@@ -1,6 +1,6 @@
 from random import choice 
 from colorama import Fore #cores
-from colorama import init
+from colorama import init, Fore, Back, Style
 init(autoreset=True)
 
 def filtra(listaPalavras,numLetras):
