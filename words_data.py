@@ -1,20 +1,19 @@
-from random import choice 
+from random import choice
 from colorama import init, Fore, Back, Style
-import front_end as front
 init(autoreset=True)
+global PALAVRAS
 
 
-
-def filtra(listaPalavras,numLetras):
+def filtra(numLetras):
     nlist = []
-    for palavra in listaPalavras:
-        if len(palavra) == numLetras and palavra.lower() not in nlist:
+    for palavra in PALAVRAS:
+        if len(palavra) == int(numLetras):
             nlist.append(palavra.lower())
     return nlist
 
 
 def inicializa(listaPal):
-    return {'n' : len(listaPal[0]),
+    return {'n' : int(len(listaPal[0])),
     'sorteada' : choice(listaPal),
     'especuladas' : [],
     'tentativas' : len(listaPal[0]) + 1
@@ -38,16 +37,7 @@ def inidica_posicao(sorteada,especulada):
 
 
 
-def handle_input(quant_letras):
-    while True:
-        try:
-            global valor_numerico
-            valor_numerico = int(quant_letras)
-            break
-        except ValueError:
-            print("O valor digitado não é numérico. Por favor, tente novamente.")
 
-    return valor_numerico
 
 PALAVRAS = [
     "a", "Aarao", "aba", "abacate", "abacateiro", "abacateiros", "abacates", "abacaxi", "abacaxis", "abaciais", "abacial", "abaco", "abacos", "abade", "abades", "abadessa", "abadessas", "abadia", "abadias", "abafa", 
@@ -12320,10 +12310,4 @@ PALAVRAS = [
     "zurrarieis", "zurrarmo", "zurrarmos", "zurras", "zurrasse", "zurrasseis", "zurrassem", "zurrassemos", "zurrasses", "zurraste", "zurrastes", "zurrava", "zurravam", "zurravamos", "zurravas", "zurraveis", "zurre", "zurrei", "zurreis", "zurrem", 
     "zurremo", "zurremos", "zurres", "zurro", "zurros", "zurrou", 
 ]
-
-
-sanitized_words = filtra(PALAVRAS,5)
-
-
-info_dic = inicializa(sanitized_words)
 
