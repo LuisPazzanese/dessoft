@@ -18,7 +18,7 @@ print('=' * 26 + '\n')
 while True:
     while True:
         try:
-            quant_letras = input('Quantas letras voce deseja que a palavra tenha? ')
+            quant_letras = input('Quantas letras você deseja que a palavra tenha? ')
             valor_numerico = int(quant_letras)
             break
         except ValueError:
@@ -66,7 +66,7 @@ while True:
             
     while True:
         if tentativas == 0:
-            print('Voce perdeu! ')
+            print('Você perdeu! ')
             break
         print('Voce tem {0} tentativas!'.format(tentativas))
         palpite = input('Qual o seu palpite? ')
@@ -77,13 +77,13 @@ while True:
         else:
             retorno = jogo(palpite)
             if palpite == sorteada:
-                print('Voce ganhou!')
+                print('Você ganhou!')
                 break
             tentativas -= 1
             
             
 
-    rejogar = input('deseja jogar novamente? (s/n): ')
+    rejogar = input('Deseja jogar novamente? (s/n): ')
 
     if rejogar.lower() in ['s','sim','claro']:
         continue
