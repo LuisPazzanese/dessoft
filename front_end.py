@@ -36,7 +36,6 @@ while True:
     sorteada = info_dic['sorteada']
     print('Já tenho uma palavra! Tente adivinhá-la!')
 
-    print(sorteada)
 
         
     def jogo(palpite):
@@ -57,7 +56,7 @@ while True:
             retorno += '  | ' * 5
         
         print(' ---'*5+'\n'+ retorno)
-        
+        print(' ---'*5)
             
             
     while True:
@@ -81,7 +80,6 @@ while True:
                     jogo(especuladas[i])
                 else:
                     jogo('')
-            retorno = jogo(palpite)
             if palpite == sorteada:
                 print('Você ganhou!')
                 break
