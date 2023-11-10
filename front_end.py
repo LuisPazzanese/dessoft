@@ -20,6 +20,7 @@ while True:
     sanitized_words = words_data.filtra(quant_letras) 
     info_dic = words_data.inicializa(sanitized_words)
     tentativas = info_dic['tentativas']
+    especuladas = info_dic['especuladas']
     
     print('Comandos: desisto' + '\n')
     print(' ' + 'Regras:'+'\n')
@@ -68,6 +69,8 @@ while True:
             print('Somente palavras de {0} letras'.format(quant_letras))
         elif palpite not in words_data.PALAVRAS:
             print('Palavra desconhecida.')
+        elif palpite in especuladas:
+            print('Palavra já escolhida!')
         else:
             retorno = jogo(palpite)
             if palpite == sorteada:
