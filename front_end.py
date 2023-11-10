@@ -2,7 +2,6 @@ from random import choice
 from colorama import init, Fore, Back, Style
 import words_data
 import time
-from art import *
 init(autoreset=True)
 
 
@@ -16,19 +15,12 @@ print('=' * 26 + '\n')
 
 
 while True:
-    while True:
-        try:
-            quant_letras = input('Quantas letras você deseja que a palavra tenha? ')
-            valor_numerico = int(quant_letras)
-            break
-        except ValueError:
-            print("O valor digitado não é numérico. Por favor, tente novamente.")
 
-
-    sanitized_words = words_data.filtra(quant_letras)
+    quant_letras = 5 #quantidade de letras fixas
+    sanitized_words = words_data.filtra(quant_letras) 
     info_dic = words_data.inicializa(sanitized_words)
     tentativas = info_dic['tentativas']
-
+    
     print('Comandos: desisto' + '\n')
     print(' ' + 'Regras:'+'\n')
     print('  - Você tem '+ Fore.RED + f'{tentativas}' + Fore.RESET + ' tentativas para acertar uma palavra aleatória de '+f'{quant_letras}' + ' letras.')
@@ -54,11 +46,11 @@ while True:
             cores = words_data.inidica_posicao(sorteada,palpite)
             for i in range(len(palpite)):
                 if cores[i] == 0:
-                    retorno += Fore.BLUE + text2art(palpite[i]) + Fore.RESET
+                    retorno += Fore.BLUE + palpite[i] + Fore.RESET
                 elif cores[i] == 1:
-                    retorno += Fore.YELLOW +  text2art(palpite[i]) + Fore.RESET
+                    retorno += Fore.YELLOW +  palpite[i] + Fore.RESET
                 else:
-                    retorno += Fore.BLACK + text2art(palpite[i]) + Fore.RESET
+                    retorno += Fore.BLACK + palpite[i] + Fore.RESET
             print(retorno)
             
             return retorno
@@ -69,11 +61,13 @@ while True:
             print('Você perdeu! ')
             break
         print('Voce tem {0} tentativas!'.format(tentativas))
-        palpite = input('Qual o seu palpite? ')
+        palpite = input('Qual o seu palpite? ').strip().lower()
         if palpite.lower() == 'desisto':
             break
         if len(palpite) != int(quant_letras):
             print('Somente palavras de {0} letras'.format(quant_letras))
+        elif palpite not in words_data.PALAVRAS:
+            print('Palavra desconhecida.')
         else:
             retorno = jogo(palpite)
             if palpite == sorteada:
@@ -83,10 +77,11 @@ while True:
             
             
 
-    rejogar = input('Deseja jogar novamente? (s/n): ')
+    rejogar = input('Deseja jogar novamente? (s/n): ').strip().lower()
 
-    if rejogar.lower() in ['s','sim','claro']:
+    if rejogar in ['s','sim','claro']:
         continue
-    elif rejogar.lower() in ['n','nao','não','nunca']:
+    else:
         print('Ate mais!')
         break
+
