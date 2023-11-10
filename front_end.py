@@ -61,7 +61,7 @@ while True:
             
     while True:
         if tentativas == 0:
-            print('Você perdeu! ')
+            print('Você perdeu! \nA resposta era: ' + sorteada)
             break
         print('Voce tem {0} tentativas!'.format(tentativas))
         palpite = input('Qual o seu palpite? ').strip().lower()
