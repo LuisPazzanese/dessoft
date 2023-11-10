@@ -40,10 +40,10 @@ while True:
 
         
     def jogo(palpite):
-        while True:
             
-            retorno = ''
+        retorno = '| '
 
+        if len(palpite) > 0:
             cores = words_data.inidica_posicao(sorteada,palpite)
             for i in range(len(palpite)):
                 if cores[i] == 0:
@@ -52,9 +52,12 @@ while True:
                     retorno += Fore.YELLOW +  palpite[i] + Fore.RESET
                 else:
                     retorno += Fore.BLACK + palpite[i] + Fore.RESET
-            print(retorno)
-            
-            return retorno
+                retorno += " | "
+        else:
+            retorno += '  | ' * 5
+        
+        print(' ---'*5+'\n'+ retorno)
+        
             
             
     while True:
@@ -72,6 +75,12 @@ while True:
         elif palpite in especuladas:
             print('Palavra já escolhida!')
         else:
+            especuladas.append(palpite)
+            for i in range(6):
+                if i < len(especuladas):
+                    jogo(especuladas[i])
+                else:
+                    jogo('')
             retorno = jogo(palpite)
             if palpite == sorteada:
                 print('Você ganhou!')
